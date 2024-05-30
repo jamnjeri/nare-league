@@ -5,6 +5,8 @@ import { fetchCompetitions } from "./competitionsSlice";
 const Comp = () => {
   const dispatch = useDispatch();
   const competitions = useSelector((state) => state.competitions);
+  const loading = useSelector((state) => state.competitions.loading);
+  const error = useSelector((state) => state.competitions.error);
 
   useEffect(() => {
     dispatch(fetchCompetitions());
