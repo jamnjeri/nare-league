@@ -9,27 +9,33 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import store from "./components/store";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [activePage, setActivePage] = useState("Home");
 
-  const renderActivePage = () => {
-    switch (activePage) {
-      case "Home":
-        return <HomePage />;
-      case "NareLeague":
-        return <NareLeaguePage />;
-      default:
-        return null; // Render nothing for other pages
-    }
-  };
+  // const renderActivePage = () => {
+  //   switch (activePage) {
+  //     case "Home":
+  //       return <HomePage />;
+  //     case "NareLeague":
+  //       return <NareLeaguePage />;
+  //     default:
+  //       return null;
+  //   }
+  // };
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header setActivePage={setActivePage} />
-        {renderActivePage()}
-        <Footer />
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/nare-league" element={<NareLeaguePage />} />
+          </Routes>
+          <Footer />
+        </Router>
       </ThemeProvider>
     </Provider>
   );

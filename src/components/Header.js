@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../images/betnarelogo.svg";
 import { useTheme } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 
 const pages = [
   "Home",
@@ -26,7 +27,14 @@ const pages = [
   "Promotions",
 ];
 
-function Header({ setActivePage }) {
+const pagePaths = {
+  Home: "/",
+  NareLeague: "/nare-league",
+};
+
+const defaultPath = "/";
+
+function Header() {
   const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,7 +49,7 @@ function Header({ setActivePage }) {
   };
 
   const handlePageClick = (page) => {
-    setActivePage(page);
+    // setActivePage(page);
     handleCloseNavMenu();
   };
 
@@ -183,7 +191,8 @@ function Header({ setActivePage }) {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={() => handlePageClick(page)}
+                  component={Link}
+                  to={pagePaths[page] || defaultPath}
                   sx={{
                     my: 2,
                     color: "white",
