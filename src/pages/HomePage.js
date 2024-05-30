@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import HomeLeft from "../components/HomeLeft";
 import HomeRight from "../components/HomeRight";
+import HomeMiddle from "../components/HomeMiddle";
 
 function Home() {
   return (
@@ -17,7 +18,7 @@ function Home() {
       <Grid item xs={7}>
         {/* Content for the middle column */}
         <div style={{ backgroundColor: "none", height: "100%" }}>
-          Middle Column
+          <HomeMiddle />
         </div>
       </Grid>
       {/* Right column */}

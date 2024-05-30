@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCompetitions } from "./competitionsSlice";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Typography from "@mui/material/Typography";
 
 const HomeLeft = () => {
   const dispatch = useDispatch();
@@ -35,10 +40,23 @@ const HomeLeft = () => {
   return (
     <div>
       {sportsWithFlags.map((sport, index) => (
-        <div key={index}>
-          <img src={sport.flag} style={{ width: '20px', height: '20px', marginRight: '5px' }} />
-          <span>{sport.name}</span>
-        </div>
+        <Accordion key={index} sx={{ backgroundColor: "#16202C", color: "white", border: "none", boxShadow: "none", minHeight: "20px" }}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon sx={{ color: "white" }}/>}
+            aria-controls={`panel${index + 1}-content`}
+            id={`panel${index + 1}-header`}
+            sx={{ backgroundColor: "none", border: "none" }}
+          >
+            <img
+              src={sport.flag}
+              style={{ width: "10px", height: "10px", marginRight: "5px" }}
+            />
+            <span>{sport.name}</span>
+          </AccordionSummary>
+          <AccordionDetails sx={{ backgroundColor: "#16202C", color: "white", border: "none" }}>
+            <Typography>More details</Typography>
+          </AccordionDetails>
+        </Accordion>
       ))}
     </div>
   );
