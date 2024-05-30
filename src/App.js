@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import CssBaseline from "@mui/material/CssBaseline";
+import React, { useState } from "react";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./theme";
+import HomePage from "./pages/HomePage";
+import NareLeaguePage from "./pages/NareLeague";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Provider } from "react-redux";
+import store from "./components/store";
 
 function App() {
+  const [activePage, setActivePage] = useState("Home");
+
+  const renderActivePage = () => {
+    switch (activePage) {
+      case "Home":
+        return <HomePage />;
+      case "NareLeague":
+        return <NareLeaguePage />;
+      default:
+        return null; // Render nothing for other pages
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header setActivePage={setActivePage} />
+        {renderActivePage()}
+        <Footer />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
