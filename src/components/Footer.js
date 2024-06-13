@@ -72,8 +72,9 @@ function Footer() {
               rel="noopener noreferrer"
               style={{ color: "#00FFFF" }}
             >
+              {" "}
               Responsible Gambling Website
-            </a>
+            </a>{" "}
             ).
           </p>
           <p>
